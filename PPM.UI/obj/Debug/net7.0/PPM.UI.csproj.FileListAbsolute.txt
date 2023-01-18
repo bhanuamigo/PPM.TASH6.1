@@ -1,0 +1,17 @@
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.UI.deps.json
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.UI.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.UI.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.MODEL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.MODEL.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.DOMAIN.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.csproj.AssemblyReference.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.AssemblyInfoInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.AssemblyInfo.cs
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.csproj.CoreCompileInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.csproj.CopyComplete
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\refint\PPM.UI.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\ref\PPM.UI.dll

@@ -1,0 +1,30 @@
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/bin/Debug/net6.0/PPM.DOMAIN.deps.json
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/bin/Debug/net6.0/PPM.DOMAIN.dll
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/bin/Debug/net6.0/PPM.DOMAIN.pdb
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/bin/Debug/net6.0/PPM.MODEL.dll
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/bin/Debug/net6.0/PPM.MODEL.pdb
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.csproj.AssemblyReference.cache
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.GeneratedMSBuildEditorConfig.editorconfig
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.AssemblyInfoInputs.cache
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.AssemblyInfo.cs
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.csproj.CoreCompileInputs.cache
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.csproj.CopyComplete
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.dll
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/refint/PPM.DOMAIN.dll
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/PPM.DOMAIN.pdb
+/Users/bhanuprakash/Desktop/Prolifics Project Management/PPM.DOMAIN/obj/Debug/net6.0/ref/PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net6.0\PPM.DOMAIN.deps.json
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net6.0\PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net6.0\PPM.DOMAIN.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net6.0\PPM.MODEL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net6.0\PPM.MODEL.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.csproj.AssemblyReference.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.AssemblyInfoInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.AssemblyInfo.cs
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.csproj.CoreCompileInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.csproj.CopyComplete
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\refint\PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\PPM.DOMAIN.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net6.0\ref\PPM.DOMAIN.dll
