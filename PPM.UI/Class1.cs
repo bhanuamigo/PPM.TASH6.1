@@ -9,16 +9,8 @@ namespace PROGRAM.UI.ui
 
  public class UI
 {
-   public void Viewing(){
-
-        Console.Write("\n PROLIFICS PROJECT MANAGEMENT\n");
-        Console.Write(" \n [Enter 1 : Add Project] \t" + "[Enter 2 : View all Projects ] \t" +"[Enter 3 : Add Employee] \t "   
-                 + "\n \n [Enter 4 : View all Employees] \t" + "[Enter 5 : Add Role] \t " +  "[Enter 6 : View all Roles] \t "
-                +"\n \n  [Enter 7 : Search Project] \t"+ "[Enter 8 : Search Project via Id] \t" +"[Enter 9  : Add employee to Project] \t" 
-            + "\n \n  [Enter 10 : View  Project details ] \t "+"[ Enter 11 : Delete Employee from  Project] \t "+"[Enter x  :  Exit Application] "); 
-
-        Console.WriteLine("\n \n[Select Operation] ");
-
+   public void Viewing()
+   {
 
         ProjectData obj = new ProjectData();
         Employee employee = new Employee();
@@ -39,10 +31,65 @@ namespace PROGRAM.UI.ui
         Regex phonenumber = new Regex(@"(^[0-9]{10}$)|(^\+[0-9]{2}\s+[0-9]{2}[0-9]{8}$)|(^[0-9]{3}-[0-9]{4}-[0-9]{4}$)");
         Regex email = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
         Regex date = new Regex(@"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$");
-        var read = Console.ReadLine();
-        while (true)
+        View:
+            Console.WriteLine("");
+            Console.WriteLine("                                      *** | PROLIFICS PROJECT MANAGEMENT    | ***                                    ");
+            Console.WriteLine("");
+            Console.WriteLine("\n \n  HELLO PROLIFIAN ");
+            Console.WriteLine("");
+            Console.Write("\n \n  Select  Operation ");
+            Console.WriteLine("");
+            Console.Write("                                           Enter \"1\" : Project Module");
+            Console.WriteLine("");
+            Console.Write("                                           Enter \"2\" : Employee Module");
+            Console.WriteLine("");
+            Console.Write("                                           Enter \"3\" : Role Module");
+            Console.WriteLine("");
+            Console.WriteLine("                                       Enter \"x\" : exit application");
+            Console.WriteLine("");
+            Console.Write("\n \n Please  Enter Selected Operation ");
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("");
+            var read = Console.ReadLine();
+            while (true)
+            {
+            repeat:
+                switch (read)
+                {
+                    case "1":
+                        while (true)
+                        {
+                        projectModule:
+                            Console.WriteLine("");
+                            Console.WriteLine("                                     ****| Welcome to Project Module   |***                                    ");
+                            Console.WriteLine("");
+                            Console.Write("\n \n  Select  Operation ");
+                            Console.Write("                                           Enter \"1\" : Add Project");
+                            Console.WriteLine("");
+                            Console.Write("                                           Enter \"2\" : View  all Projects");
+                            Console.WriteLine("");
+                            Console.Write("                                           Enter \"3\" : View  Project by ID");
+                            Console.WriteLine("");
+                            Console.Write("                                            Enter \"4\" : View Project by Name");
+                            Console.WriteLine("");
+                            Console.WriteLine("                                       Enter \"5\" : Add Employee to Project");
+                            Console.WriteLine("");
+                            Console.WriteLine("                                       Enter \"6\"  : Remove Employee from Project");
+                            Console.WriteLine("");
+                            Console.WriteLine("                                       Enter \"7\"  : View Projects with Employees");
+                            Console.WriteLine("");
+                            Console.WriteLine("                                      Enter \"8\"  : Delete  Project");
+                            Console.WriteLine("");
+                            Console.WriteLine("                                       Enter \"x\"  : Main Menu");
+                            Console.WriteLine("");
+                            Console.Write("\n \n Please  Enter Selected Operation ");
+                            Console.WriteLine("");
+                            Console.WriteLine("------------------------------------------------------------------------------------------------------------------");
+                            var projectselect = Console.ReadLine();
+         while (true)
         {
-            switch (read)
+            switch (projectselect)
             {
                 case "1":
                     Console.WriteLine("");
@@ -65,7 +112,7 @@ namespace PROGRAM.UI.ui
                             var tryId = Console.ReadLine();
                             if(tryId == "x")
                             {
-                               goto breakage;
+                               goto projectModule;
                             }
                             else
                             {
@@ -122,12 +169,15 @@ namespace PROGRAM.UI.ui
                         obj.Addproject(project);
                         Console.WriteLine(" \n Project Added Successfully! \t ");
                         Console.WriteLine(" \n Enter any key to get back to Main Menu \t ");
+                        Console.ReadLine();
+                        goto projectModule;
+                        
                     }
                     catch (FormatException)
                     {
                         Console.WriteLine("\nError : only use Numbers for ID");
-                                Console.WriteLine("Enter any key to Try Again");
-                                Console.WriteLine("Enter  \"x\" to get Main Menu");
+                        Console.WriteLine("Enter any key to Try Again");
+                        Console.WriteLine("Enter  \"x\" to get Main Menu");
                             
                                 read= Console.ReadLine();
                                 if(read == "x")
@@ -135,9 +185,9 @@ namespace PROGRAM.UI.ui
                                     break;
                                 }
                                 error = true;
-                            }
+                    }
                         
-                            catch (Exception)
+                        catch (Exception)
                             {
                                 Console.WriteLine("\nError : Only use Numbers for ID");
                                 Console.WriteLine("Enter any key to Try Again");
@@ -151,19 +201,152 @@ namespace PROGRAM.UI.ui
                                     break;
                                 }
                                 error = true;
-                    }
+                            }
+                    
                 }
+            
                 while(error);
-                    breakage:
                     break;
                 case "2":
                     obj.ViewAllProjects();
                      Console.WriteLine("Enter any key to get back  to main menu");
                     Console.ReadLine();
                     break;
-
                 case "3":
-                     ProjectempId:
+                    try
+                    {
+                        Console.WriteLine("Search via project id");
+                        Console.WriteLine("Enter  id of project");
+                        int eid = Convert.ToInt32(Console.ReadLine());
+                        obj.ShowProject(eid);
+                        Console.WriteLine();
+                        Console.WriteLine("Enter any key to get back to main menu");
+                        Console.ReadLine();
+                    }
+                    catch (Exception ) 
+                    {
+                         Console.WriteLine("Id should be in numbers formate"); 
+                    }
+                    break;
+                case "4":
+                        Console.WriteLine("Type to search for project");
+                        read = Console.ReadLine();
+                        obj.SearchProject(read);
+                        Console.WriteLine("Enter any key to get to main menu");
+                        Console.ReadLine();
+                        break;
+                case "5":
+                        Console.WriteLine("");
+                        Console.WriteLine("Available projects");
+                        obj.ViewAllProjects();
+                        Console.WriteLine();
+                        Console.WriteLine(" Available employees");
+                        obj1.ShowEmployees();
+                        Console.WriteLine("Enter  Project ID ");
+                        int PROJId = Convert.ToInt32(Console.ReadLine());
+                        if(obj.exist(PROJId))
+                        {
+                         Console.WriteLine("Enter the  employee ID ");
+                        int EmpId = Convert.ToInt32(Console.ReadLine());
+                        if( obj1.exist(EmpId)){
+                            employee = obj1.eDetails(EmpId);
+                            obj.EmployeeToProject(PROJId,employee);
+                            Console.WriteLine(" Project Added Successfully");
+                             Console.WriteLine("Enter any key to get to main menu");
+                            Console.ReadLine();
+                        }
+                        else{
+                             Console.WriteLine("Employee does not exist");
+                        }
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Project does not exist");
+                    }
+                    var Read = Console.ReadLine();
+                    break;
+                case "6":  try{
+                        obj.ViewAllProjects();
+                        Console.WriteLine("Enter Project ID");
+                        int PROJId1 = Convert.ToInt32(Console.ReadLine());
+                        if(obj.exist(PROJId1)){
+                        Console.WriteLine("Enter Employee ID ");
+                        int EmpId1 = Convert.ToInt32(Console.ReadLine());
+                        employee = obj1.eDetails(EmpId1);
+                        obj.EmployeeFromProject(PROJId1,employee);
+                        Console.WriteLine("\n Employee Deleted Successfully");
+                        
+                    }
+                    else{
+                        Console.WriteLine("The project do not exist");
+                    }
+                }
+                    catch(FormatException )
+                    {
+                        Console.WriteLine("Id can only be integer");
+                    }
+                        Console.WriteLine("Enter any key to get to main menu");
+                        Console.ReadLine();
+                        break;
+                case "7":
+                    Console.WriteLine("Enter Project Id");
+                    int pid = Convert.ToInt32(Console.ReadLine());
+                    obj.Display();
+                    Console.WriteLine("Enter any key to get to main menu");
+                    Console.ReadLine();
+                    break;
+                case "8" :
+                try  
+                {
+                    Console.WriteLine(" Enter Project ID to Delete ");
+                    int IDforDelete = Convert.ToInt32(Console.ReadLine());
+                    if(obj.exist(IDforDelete))
+                
+                    {
+                        for(int i=0; i< obj.Prolifics.Count; i ++ )                 
+                        {
+                            for (int j = 0; j < obj.Prolifics[i].AddingEmployeelist.Count; j ++)
+                            {
+                                if (obj.Prolifics[i].id == IDforDelete)
+                                {
+                                    obj.EmployeeFromProject(IDforDelete, obj.Prolifics[i].AddingEmployeelist[j]);
+                                }
+                            }
+                            if (obj.Prolifics[i].id== IDforDelete)
+                            {
+                                obj.deleteProject(IDforDelete, obj.Prolifics[i]);
+                                Console.WriteLine("Deleted Successfully !!..");
+                            }
+                        }   
+                    }
+                    else
+                    {
+                        Console.WriteLine(" No  Project Exist");
+                    }
+                }
+                    catch (FormatException )
+                {
+                    Console.WriteLine("ID should be number");
+                }
+                    Console.WriteLine("Enter any key to get to main menu");
+                    Console.ReadLine();
+                    break;
+                case "9":
+                    obj.ViewAllProjects();
+                    Console.WriteLine("Enter any key to get to main menu");
+                    Console.ReadLine();
+                    break;
+                      case "x":
+                    return;
+                default:
+                    Console.WriteLine("Invalid entry");
+                    break;
+            }
+        }
+
+                /*case "8":
+                    ProjectempId:
                     Console.WriteLine("Enter the Id of employee");
                     int empId = Convert.ToInt32(Console.ReadLine());
                     for(int i = 0; i< obj1.employeeList.Count;i++){
@@ -309,11 +492,7 @@ namespace PROGRAM.UI.ui
                             Console.WriteLine("Enter any key to get back to Main Menu");
                             Console.ReadLine();
                             break;
-                case "4":
-                    obj1.ShowEmployees();
-                    Console.WriteLine("Enter any key to get back  to main menu");
-                    Console.ReadLine();
-                    break;
+           
                 case "5":
                     try
                     {
@@ -338,113 +517,35 @@ namespace PROGRAM.UI.ui
                     obj2.DisplayRole();
                     Console.WriteLine("Enter any key to get back  to main menu");
                     Console.ReadLine();
-                    break;
-
-                case "7":
-                    Console.WriteLine("search for project");
-                    read = Console.ReadLine();
-                    obj.SearchProject(read);
-                    Console.WriteLine("Enter any key to get to main menu");
-                    Console.ReadLine();
-                    break;
-
-                case "8":
-                    try
-                    {
-                        Console.WriteLine("Search via project id");
-                        Console.WriteLine("Enter  id of project");
-                        int eid = Convert.ToInt32(Console.ReadLine());
-                        obj.ShowProject(eid);
-                        Console.WriteLine();
-                        Console.WriteLine("Enter any key to get back to main menu");
-                    }
-                    catch (Exception ) 
-                    {
-                         Console.WriteLine("Id should be in numbers formate"); 
-                    }
-                    break;
-                case "9":
-                     Console.WriteLine("");
-                    Console.WriteLine("Available projects");
-                    obj.ViewAllProjects();
-                    Console.WriteLine();
-                    Console.WriteLine(" Available employees");
-                    obj1.ShowEmployees();
-                    Console.WriteLine("Enter  Project ID ");
-                    int PROJId = Convert.ToInt32(Console.ReadLine());
-                    if(obj.exist(PROJId))
-                    {
-                         Console.WriteLine("Enter the  employee ID ");
-                        int EmpId = Convert.ToInt32(Console.ReadLine());
-                        if( obj1.exist(EmpId)){
-                            employee = obj1.eDetails(EmpId);
-                            obj.EmployeeToProject(PROJId,employee);
-                            //AddingEmptoProject addition = new AddingEmptoProject();
-                            //addition.addingemp();
-                            Console.WriteLine(" Project Added Successfully");
-                             Console.WriteLine("Enter any key to get to main menu");
-                            Console.ReadLine();
-                        }
-                        else{
-                             Console.WriteLine("Employee does not exist");
-                        }
-                        
-                    }
-                    else
-                    {
-                        Console.WriteLine("Project does not exist");
-                    }
-                    //  }
-                    var Read = Console.ReadLine();
-                    break;
-
-                case "10":
-                    Console.WriteLine("Enter Project Id");
-                         int pid = Convert.ToInt32(Console.ReadLine());
-                    obj.Display();
-                    Console.WriteLine("Enter any key to get to main menu");
-                    Console.ReadLine();
-                    break;
-                case "11":  try{
-                    obj.ViewAllProjects();
-                    Console.WriteLine("Enter Project ID");
-                    int PROJId1 = Convert.ToInt32(Console.ReadLine());
-                    if(obj.exist(PROJId1)){
-                        Console.WriteLine("Enter Employee ID ");
-                        int EmpId1 = Convert.ToInt32(Console.ReadLine());
-                        employee = obj1.eDetails(EmpId1);
-                        obj.EmployeeFromProject(PROJId1,employee);
-                        Console.WriteLine("\n Employee Deleted Successfully");
-                        
-                    }
-                    else{
-                        Console.WriteLine("The project do not exist");
-                    }
-                }
-                catch(FormatException e){
-                    Console.WriteLine("Id can only be integer");
-                }
-                Console.WriteLine("Enter any key to get to main menu");
-                        Console.ReadLine();
-                break;
-                case "x":
-                    return;
-                default:
-                    Console.WriteLine("Invalid entry");
-                    break;
-            }
+                    break;*/
+              
         
    
         
-        Console.Write("\n LIST OF OPERATIONS ");
-        Console.Write(" \n [Enter 1 for add project] \t" + "[Enter 2 to view all projects ] \t" +"[Enter 3 for addEmployee] \t "   
-                 + "\n \n [Enter 4 for view all Employees] \t" + "[Enter 5 for add Role] \t " +  "[Enter 6 for view all Roles] \t "
-                +"\n \n  [Enter 7 for search project] \t"+ "[Enter 8 for search project through id] \t" +"[Enter 9 to add employee to project] \t" 
-            + "\n \n  [Enter 10 view  project details ] \t "+"[Enter 11 to remove employee from  project] \t "+"[Enter x exit application] "); 
-         Console.WriteLine("\n \n [Select operation]");
-        read = Console.ReadLine();
+            Console.Write("\n LIST OF OPERATIONS ");
+        Console.WriteLine("");
+            Console.WriteLine("                                      *** | PROLIFICS PROJECT MANAGEMENT    | ***                                    ");
+            Console.WriteLine("");
+            Console.WriteLine("\n \n  HELLO PROLIFIAN ");
+            Console.WriteLine("");
+            Console.Write("\n \n  Select  Operation ");
+            Console.WriteLine("");
+            Console.Write("                                           Enter 1 : Project Module");
+            Console.WriteLine("");
+            Console.Write("                                           Enter 2 : Employee Module");
+            Console.WriteLine("");
+            Console.Write("                                           Enter 3 : Role Module");
+            Console.WriteLine("");
+            Console.WriteLine("                                       Enter x : exit application");
+            Console.WriteLine("");
+            Console.Write("\n \n Please  Enter Selected Operation ");
+            Console.WriteLine("");
+            Console.WriteLine("----------------------------------------------------------------------------------------------------------------------");
+            Console.WriteLine("");
         }
     }
    }
-
 }
+}
+}
+

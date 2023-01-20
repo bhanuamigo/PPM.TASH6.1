@@ -35,7 +35,20 @@ public class ProjectData
                 }
         }
     }
-
+    public void ViewAllProjects()
+    {
+        if (Prolifics.Count == 0)
+            {
+                Console.WriteLine("The List is Empty !!!");
+            }
+            else
+            {
+            foreach (var p in Prolifics)
+             {
+            viewProject(p);
+            }
+            }
+    }
     public void EmployeeToProject(int ProjectId,Employee employeeName){
         for(int i=0; i<Prolifics.Count;i++){
             if(Prolifics[i].id==ProjectId){
@@ -54,28 +67,17 @@ public class ProjectData
 
 
     public Boolean exist(int ProjectId){
-        for(int i=0; i<Prolifics.Count;i++){
-            if(ProjectId== Prolifics[i].id){
+        for(int i=0; i<Prolifics.Count;i++)
+        {
+            if(ProjectId== Prolifics[i].id)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    public void ViewAllProjects()
-    {
-        if (Prolifics.Count == 0)
-            {
-                Console.WriteLine("The List is Empty !!!");
-            }
-            else
-            {
-            foreach (var p in Prolifics)
-             {
-            viewProject(p);
-            }
-            }
-    }
+   
 
     //Method to view all projects
     public void ShowProject(int eid)
