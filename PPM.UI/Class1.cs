@@ -13,10 +13,11 @@ namespace PROGRAM.UI.ui
    {
 
         ProjectData obj = new ProjectData();
-        Employee employee = new Employee();
-        Project project = new Project();
         EmployeeManagement obj1 = new EmployeeManagement();
         RoleManagement obj2 = new RoleManagement();
+        Employee employee = new Employee();
+        Project project = new Project();
+        Role role = new Role();
         obj2.RoleList.Add(new Role(1,"Manager"));
         obj2.RoleList.Add(new Role(2,"Asst.Manger"));
         obj2.RoleList.Add(new Role(3,"Software Engineer" ));
@@ -34,7 +35,6 @@ namespace PROGRAM.UI.ui
         View:
             Console.WriteLine("");
             Console.WriteLine("                                      *** | PROLIFICS PROJECT MANAGEMENT    | ***                                    ");
-            Console.WriteLine("");
             Console.WriteLine("\n \n  HELLO PROLIFIAN ");
             Console.WriteLine("");
             Console.Write("\n \n  Select  Operation ");
@@ -132,9 +132,9 @@ namespace PROGRAM.UI.ui
                                     Console.WriteLine("Invalid Date Format");
                                     Console.WriteLine("Enter any key to Try Again");
                                     Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
-                                    var sDateread=Console.ReadLine();
+                                    var startDateread=Console.ReadLine();
 
-                                    if(sDateread == "x")
+                                    if(startDateread == "x")
                                     {
                                         break;
                                     }
@@ -153,8 +153,8 @@ namespace PROGRAM.UI.ui
                                     Console.WriteLine("Enter any key to Try Again");
                                     Console.WriteLine("Enter \"x\" to Exit to  Main Menu");
                                     
-                                    var eDateread = Console.ReadLine();
-                                    if (eDateread == "x")
+                                    var endDateread = Console.ReadLine();
+                                    if (endDateread == "x")
                                     {
                                         break;
                                     }
@@ -168,9 +168,36 @@ namespace PROGRAM.UI.ui
                         project = project1;
                         obj.Addproject(project);
                         Console.WriteLine(" \n Project Added Successfully! \t ");
-                        Console.WriteLine(" \n Enter any key to get back to Main Menu \t ");
                         Console.ReadLine();
-                        goto projectModule;
+                        Console.WriteLine("Would You Like To Add Employees to this Project?");
+                        Console.WriteLine("Enter \"Yes\" to Add or Enter Anything to Deny");
+                                                
+                                                    var addEmployeeOrNot = Console.ReadLine();
+
+                                                    if (addEmployeeOrNot == "Yes")
+                                                    {
+                                                        obj1.ViewAllEmployees();
+                                                        Console.WriteLine("Above are the Available Employees");
+                                                        Console.WriteLine("Enter the ID of Employee to Add into Project");
+                                                        int EmpId = Convert.ToInt32(Console.ReadLine());
+                                                    
+                                                        if(obj.exist(EmpId))
+                                                        {
+                                                            employee = obj1.EmployeeDetails(EmpId);
+                                                            obj.AddingEmployeeToProject(Id,employee);
+                                                            Console.WriteLine("Added Successfully");
+                                                        }
+                                                        
+                                                        else 
+                                                        {
+                                                            Console.WriteLine("Employee Does Not Exist");
+                                                        }
+                                                    }
+
+                                                    Console.WriteLine("Enter any key to get Main Menu");
+                                                    Console.ReadLine();
+                                            
+
                         
                     }
                     catch (FormatException)
@@ -231,41 +258,59 @@ namespace PROGRAM.UI.ui
                 case "4":
                         Console.WriteLine("Type to search for project");
                         read = Console.ReadLine();
-                        obj.SearchProject(read);
+                        obj.SearchProjectByName(read);
                         Console.WriteLine("Enter any key to get to main menu");
                         Console.ReadLine();
                         break;
                 case "5":
+                try{
+
+                
                         Console.WriteLine("");
                         Console.WriteLine("Available projects");
                         obj.ViewAllProjects();
                         Console.WriteLine();
                         Console.WriteLine(" Available employees");
-                        obj1.ShowEmployees();
+                        obj1.ViewAllEmployees();
                         Console.WriteLine("Enter  Project ID ");
                         int PROJId = Convert.ToInt32(Console.ReadLine());
-                        if(obj.exist(PROJId))
+                    if(obj.exist(PROJId))
                         {
                          Console.WriteLine("Enter the  employee ID ");
                         int EmpId = Convert.ToInt32(Console.ReadLine());
-                        if( obj1.exist(EmpId)){
-                            employee = obj1.eDetails(EmpId);
-                            obj.EmployeeToProject(PROJId,employee);
+                        if( obj1.exist(EmpId))
+                        {
+                            Employee  employee1 = obj1.EmployeeDetails(EmpId);
+                            if(!obj.IfExistsInEmployee(EmpId, PROJId))
+                            {
+                            obj.AddingEmployeeToProject(PROJId,employee);
+                            
                             Console.WriteLine(" Project Added Successfully");
-                             Console.WriteLine("Enter any key to get to main menu");
-                            Console.ReadLine();
-                        }
-                        else{
-                             Console.WriteLine("Employee does not exist");
+                            }
+                        else
+                        {
+                             Console.WriteLine("Employee Already exist");
                         }
                         
-                    }
+                        }
+                        
                     else
                     {
-                        Console.WriteLine("Project does not exist");
+                        Console.WriteLine("project does not exist");
                     }
-                    var Read = Console.ReadLine();
-                    break;
+                 } 
+                }
+                   catch(Exception)
+                   {
+                    Console.WriteLine("Invalid Entry");
+                   }
+                   Console.WriteLine("Enter any key to get back to main menu");
+                   Console.ReadLine();
+                   
+                 
+                break;
+
+                
                 case "6":  try{
                         obj.ViewAllProjects();
                         Console.WriteLine("Enter Project ID");
@@ -273,14 +318,21 @@ namespace PROGRAM.UI.ui
                         if(obj.exist(PROJId1)){
                         Console.WriteLine("Enter Employee ID ");
                         int EmpId1 = Convert.ToInt32(Console.ReadLine());
-                        employee = obj1.eDetails(EmpId1);
+                        if (obj.exist(EmpId1))
+                        {
+                        employee = obj1.EmployeeDetails(EmpId1);
                         obj.EmployeeFromProject(PROJId1,employee);
                         Console.WriteLine("\n Employee Deleted Successfully");
                         
                     }
                     else{
-                        Console.WriteLine("The project do not exist");
+                        Console.WriteLine("NO employee present in project with the given id");
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Project do not exist");
+                }
                 }
                     catch(FormatException )
                     {
@@ -315,7 +367,7 @@ namespace PROGRAM.UI.ui
                             }
                             if (obj.Prolifics[i].id== IDforDelete)
                             {
-                                obj.deleteProject(IDforDelete, obj.Prolifics[i]);
+                                obj.DeleteProject(IDforDelete, obj.Prolifics[i]);
                                 Console.WriteLine("Deleted Successfully !!..");
                             }
                         }   
@@ -344,34 +396,57 @@ namespace PROGRAM.UI.ui
                     break;
             }
         }
-
-                /*case "8":
-                    ProjectempId:
-                    Console.WriteLine("Enter the Id of employee");
-                    int empId = Convert.ToInt32(Console.ReadLine());
-                    for(int i = 0; i< obj1.employeeList.Count;i++){
-                        if(obj1.employeeList[i].employeeId == empId){
-                            Console.WriteLine(" \n \n The id already exists \t ");
-                            Console.WriteLine("\n Enter any key to try again \t");
-                            Console.WriteLine(" \n Press x to get to main menu \t ");
-                            var tryId = Console.ReadLine();
-                            if(tryId == "x"){
-                               goto breakage;
-                            }
-                            else{
+    }
+        
+        case "2":
+                while(true)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine(" ***** EMPLOYEE MODULE ***** ");
+                    Console.WriteLine("");
+                    Console.WriteLine(" Enter 1 to Adding Employee ");
+                    Console.WriteLine(" Enter 2 to List All Employees ");
+                    Console.WriteLine(" Enter 3 to List Employee By Id ");
+                    Console.WriteLine(" Enter 4 to Delete Employee ");
+                    Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                    Console.WriteLine("");
+                    var employeeSelector = Console.ReadLine();
+                    switch(employeeSelector)
+                    {
+                    case "1":
+                        tryagain:
+                        try
+                        {
+                        ProjectempId:
+                        Console.WriteLine("Enter the Id of employee");
+                        int empId = Convert.ToInt32(Console.ReadLine());
+                         for(int i = 0; i< obj1.ProlificsemployeeList.Count;i++)
+                        {
+                            if(obj1.ProlificsemployeeList[i].employeeId == empId)
+                            {
+                                Console.WriteLine(" \n \n The id already exists \t ");
+                                Console.WriteLine("\n Enter any key to try again \t");
+                                Console.WriteLine(" \n Press x to get to main menu \t ");
+                                var tryId = Console.ReadLine();
+                                if(tryId == "x")
+                                {
+                                goto tryagain;
+                                }
+                                else
+                                {
                                 goto ProjectempId;
-                            }
+                                }
                             }
                         }
                         
-                    Console.WriteLine("Enter employee First Name");
-                    string FirstName = Console.ReadLine();
-                    Console.WriteLine("Enter employee Last Name");
-                    string LastName = Console.ReadLine();
-                    EMAIL:
-                    Console.WriteLine("Enter employee Email Id");
-                    string Email = Console.ReadLine();
-                    if(!email.IsMatch(Email))
+                        Console.WriteLine("Enter employee First Name");
+                        var FirstName = Console.ReadLine();
+                        Console.WriteLine("Enter employee Last Name");
+                        var LastName = Console.ReadLine();
+                        EMAIL:
+                        Console.WriteLine("Enter employee Email Id");
+                        string Email = Console.ReadLine();
+                            if(!email.IsMatch(Email))
                             {
                                 Console.WriteLine("Invalid Email Format");
                                 Console.WriteLine("Enter any key to Try Again");
@@ -388,10 +463,10 @@ namespace PROGRAM.UI.ui
                                     goto EMAIL;
                                 }
                             }
-                    Mobile:
-                    Console.WriteLine("Enter employee Mobile Number");
-                    string MobileNumber = Console.ReadLine();
-                    if(!phonenumber.IsMatch(MobileNumber))
+                        Mobile:
+                        Console.WriteLine("Enter employee Mobile Number");
+                        string MobileNumber = Console.ReadLine();
+                            if(!phonenumber.IsMatch(MobileNumber))
                             {
                                 Console.WriteLine("Invalid Mobile Number format");
                                 Console.WriteLine("Enter any key to Try Again");
@@ -408,96 +483,263 @@ namespace PROGRAM.UI.ui
                                 }
                             }
                             
-                    Console.WriteLine("Enter Employee Address");
-                    string Address = Console.ReadLine();
+                        Console.WriteLine("Enter Employee Address");
+                        string Address = Console.ReadLine();
 
 
-                    Option:
-                    Console.WriteLine("Select 1 : Add Role Id to Employe");
-                    Console.WriteLine("Select 2 : New Role to  Employee");
-                    int select = Convert.ToInt32(Console.ReadLine());
-                    if (select == 1)
-                    {
+                        Option:
+                        Console.WriteLine("Select 1 : Add Role Id to Employe");
+                        Console.WriteLine("Select 2 : New Role to  Employee");
+
+                        int select = Convert.ToInt32(Console.ReadLine());
+                        if (select == 1)
+                        {
                         try
                         {
-                            SelectRole:
-                           obj2.DisplayRole();
+                        SelectRole:
+                            obj2.DisplayRole();
                             Console.WriteLine("Select Role Id from above list to assign role to employee");
                             int r1 = Convert.ToInt32(Console.ReadLine());
                             string? roleName1 = null;
-                            switch (r1)
+                            if(obj2.exist(r1))
                             {
-                                case 1:
-                                    roleName1 = "Manager";
-                                    break;
-                                case 2:
-                                    roleName1 = " Asst.Manager";
-                                    break;
-                                case 3:
-                                    roleName1 = " Software Engineer";
-                                    break;
-                                case 4:
-                                    roleName1 = " Associate Software Engineer";
-                                    break;
-                                case 5:
-                                    roleName1 = "Trainee Software Engineer";
-                                    break;
-                                default:
-                                 Console.WriteLine("Invalid Entry");
-                                            Console.WriteLine("Enter any key to Try Again");
-                                            Console.WriteLine("Enter  \"x\" to get Main Menu");
-                                            string? tryemprole = Console.ReadLine();
-
-                                            if(tryemprole == "x")   
-                                            {
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                goto SelectRole;
-                                            }
+                                for (int i=0; i<obj2.RoleList.Count; i++)
+                                {
+                                if (obj2.RoleList[i].roleId == r1)
+                                    {
+                                    roleName1= obj2.RoleList[i].roleName;
+                                    }
+                                }
                             }
-                            Employee eadd = new Employee(empId, FirstName, LastName, Email, MobileNumber, Address, r1, roleName1);
-                            obj1.AddEmp(eadd);
-                            employee = eadd;
+                            else
+                            {
+                                Console.WriteLine("Invalid Entry");
+                                Console.WriteLine("Enter any key to Try Again");
+                                Console.WriteLine("Enter  \"x\" to get Main Menu");
+                                string? tryemprole = Console.ReadLine();
+                                if(tryemprole == "x")   
+                                {
+                                    break;
+                                }
+                                else
+                                {
+                                    goto SelectRole;
+                                }
+                            }
+                            Employee employeeadd = new Employee(empId, FirstName, LastName, Email, MobileNumber, Address, r1, roleName1);
+                            obj1.AddEmployee(employeeadd);
+                            employee = employeeadd;
                             Console.WriteLine(" \n \n Added Successfully");
                         }
                         catch (Exception)
                         {
                             Console.WriteLine("\n \n Emp ID in formate eg: 1234 ");
                         }
-                    }
-                    else if (select == 2)
-                    {
-                        try
+                        }
+                        else if (select == 2)
                         {
+                        try
+                        {   roleID:
                             Console.WriteLine("Enter  Role Id");
                             int roleID = Convert.ToInt32(Console.ReadLine());
+                            if (obj2.exist(roleID))
+                            {
+                                Console.WriteLine("Role with this ID already Exists");
+                                Console.WriteLine("Enter any key to Try Again");
+                                Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                                var tryagain = Console.ReadLine();
+                                if (tryagain == "x")
+                                {
+                                break;
+                                }
+                                else
+                                {
+                                goto roleID;
+                                }
+                            }
+                           else
+                           {                                 
                             Console.WriteLine("Enter  name of the  Role");
                             string roleName = Console.ReadLine();
                             Console.WriteLine(roleName);
+
                             Role newRole = new Role(roleID, roleName);
                             obj2.RoleAdd(newRole);
+
                             Employee eadd = new Employee(empId, FirstName, LastName, Email, MobileNumber,Address, roleID, roleName);
-                            obj1.AddEmp(eadd);
+                            obj1.AddEmployee(eadd);
                             employee = eadd;
                             Console.WriteLine("\n \n ...Added Successfully...\t");
+                           }
                         }
                         catch (Exception)
                         {
                             Console.WriteLine("\n \n Role Id should be Numbers ");
                         }
-                    }
-                            Console.WriteLine("");
-                            Console.WriteLine("Enter any key to get back to Main Menu");
-                            Console.ReadLine();
-                            break;
-           
-                case "5":
-                    try
-                    {
-                        Console.WriteLine(" \n \n Enter  Role Id \t ");
-                        int roleID = Convert.ToInt32(Console.ReadLine());
+                        }
+                        else
+                        {
+                        Console.WriteLine("Invalid entry");
+                        Console.WriteLine("Try Again");
+                        goto Option;
+                        }
+                        }
+                        catch(FormatException e)
+                        {
+                        Console.WriteLine("ID can only be in Numbers");
+                        Console.WriteLine("Enter any key to Try Again");
+                        Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                        string EmpIdTry = Console.ReadLine();
+                        if(EmpIdTry == "x")
+                            {
+                                goto breaking;
+                            }
+                            else
+                            {
+                                goto tryagain;
+                            }
+                        }
+
+                        catch(Exception e)
+                        {
+                        Console.WriteLine("Invalid Entry");
+                        Console.WriteLine("Enter any key to Try Again");
+                        Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                            
+                        string EmpIdTry1 = Console.ReadLine();
+
+                        if(EmpIdTry1 == "x")
+                            {
+                                goto breaking;
+                            }
+                            else
+                            {
+                                goto tryagain;
+                            }
+                        }
+
+                        Console.WriteLine("");
+                        Console.WriteLine("Enter any key to get back to Main Menu");
+                        Console.ReadLine();
+                        breaking;
+                        break;
+
+                case "2":
+                    obj1.ViewAllEmployees();
+                    Console.WriteLine("Enter any key to get Main Menu");
+                    Console.ReadLine();
+                    break;
+                case "3":
+                                        try
+                                        {
+                                            Console.WriteLine("Enter the ID of the Employee");
+                                            int searchEmployeeById = Convert.ToInt32(Console.ReadLine());
+                                            obj1.ShowEmployee(searchEmployeeById);
+                                            Console.WriteLine("Enter any key to get Main Menu");
+                                            Console.ReadLine();
+                                        }
+
+                                        catch (FormatException e)
+                                        {
+                                            Console.WriteLine("ID can only be in Numbers");
+                                        }
+                                    
+                                        catch (Exception e)
+                                        {
+                                            Console.WriteLine("Invalid Input");
+                                        }
+                                        break;
+
+                                    case "4":
+                                        try
+                                        {
+                                            Console.WriteLine("Enter the ID of the Employee");
+                                            int idforDeleting = Convert.ToInt32(Console.ReadLine());
+                                            for (int i=0; i< obj1.ProlificsemployeeList.Count; i++)
+                                            {
+                                                if (obj1.ProlificsemployeeList[i].employeeId == idforDeleting)
+                                                {
+                                                    for (int j=0; j<obj.Prolifics.Count; j++)
+                                                    {
+                                                        if (obj.Prolifics.Count !=0 && obj.Prolifics[j].AddingEmployeelist.Count !=0)
+                                                        {
+                                                            for (int k=0; k<obj.Prolifics[j].AddingEmployeelist.Count; k++)
+                                                            {
+                                                                if (obj.Prolifics[j].AddingEmployeelist[k].employeeId == idforDeleting)
+                                                                {
+                                                                    obj.Prolifics[j].AddingEmployeelist.Remove(obj.Prolifics[j].AddingEmployeelist[k]);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    obj1.DeleteEmployee(idforDeleting, obj1.ProlificsemployeeList[i]);
+                                                    Console.WriteLine("Deleted Successfully");
+                                                }
+                                            }
+                                            
+                                            Console.WriteLine("Enter any key to get Main Menu");
+                                            Console.ReadLine();
+                                            break;
+                                        }
+                                    
+                                        catch (FormatException e)
+                                        {
+                                            Console.WriteLine("Enter Valid Input");
+                                        }
+                                        break;
+                                
+                                    case "x":
+                                        goto View;
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Invalid Input, Provide Correct Input");
+                                        break;
+                                }
+                            }
+
+
+                case "3":
+                while(true)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine(" ***** ROLE MODULE ***** ");
+                    Console.WriteLine("");
+                    Console.WriteLine(" Enter 1 to Adding Role ");
+                    Console.WriteLine(" Enter 2 to List All Roles ");
+                    Console.WriteLine(" Enter 3 to List Roles By Id ");
+                    Console.WriteLine(" Enter 4 to Delete Role ");
+                    Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                    Console.WriteLine("");
+                    var roleSelector = Console.ReadLine();
+                switch (roleSelector)
+                {
+                    case "1":
+                        try
+                        {
+                            InputroleID:
+                            Console.WriteLine(" \n \n Enter  Role Id \t ");
+                            int roleID = Convert.ToInt32(Console.ReadLine());
+                            for(int i = 0; i<obj2.RoleList.Count; i++)
+                            {
+                            if(roleIDD == obj2.RoleList[i].roleId)
+                            {
+                            Console.WriteLine("The ID already exists try new ID");
+                            Console.WriteLine("Enter any key to Try Again");
+                            Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                            string roleidTry = Console.ReadLine();
+                                                        if (roleidTry == "x") 
+                                                        {
+                                                            break;
+                                                        }
+                                                        else
+                                                        {
+                                                            goto InputroleID;
+                                                        }
+                                                    }
+                                                }
+
                         Console.WriteLine("Enter name of the  Role");
                         string roleName = Console.ReadLine();
                         Console.WriteLine(roleName);
@@ -513,17 +755,18 @@ namespace PROGRAM.UI.ui
                     Console.ReadLine();
                     break;
 
-                case "6":
+                case "x":
                     obj2.DisplayRole();
                     Console.WriteLine("Enter any key to get back  to main menu");
                     Console.ReadLine();
-                    break;*/
+                    break;
+        }
               
         
    
         
-            Console.Write("\n LIST OF OPERATIONS ");
-        Console.WriteLine("");
+           Console.Write("\n LIST OF OPERATIONS ");
+            Console.WriteLine("");
             Console.WriteLine("                                      *** | PROLIFICS PROJECT MANAGEMENT    | ***                                    ");
             Console.WriteLine("");
             Console.WriteLine("\n \n  HELLO PROLIFIAN ");
@@ -546,6 +789,5 @@ namespace PROGRAM.UI.ui
     }
    }
 }
-}
-}
+
 

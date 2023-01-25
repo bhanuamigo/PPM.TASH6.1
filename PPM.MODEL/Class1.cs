@@ -5,10 +5,10 @@ namespace Program.Model.modl
 
 
 
-public class Project
+public class Project: IComparable<Project>
 {
     public List<Employee> AddingEmployeelist = new List<Employee>();
-    public int? id { get; set; }
+    public int id { get; set; }
     public string projectName { get; set; }
     public string startDate { get; set; }
     public string endDate { get; set; }
@@ -27,8 +27,21 @@ public class Project
     {
 
     }
+     public Project (int empid)
+        {
+            this.id = empid;
+        }
+        public int CompareTo(Project other)
+        {
+            return this.id.CompareTo(other.id);
+        }
+
+        /*public int CompareTo(Project other)
+        {
+            return this.id.CompareTo(other.id);
+        }*/
 }
-public class Employee
+public class Employee: IComparable<Employee>
 {
     public int employeeId { get; set; }
     public string firstName { get; set; }
@@ -56,8 +69,14 @@ public class Employee
     {
 
     }
+    public int CompareTo(Employee other)
+    {
+        return this.roleId.CompareTo(other.roleId);
+    }
+
+    
 }
-public class Role
+public class Role: IComparable<Role>
 {
     public string roleName { get; set; }
     public int roleId { get; set; }
@@ -67,6 +86,11 @@ public class Role
        this.roleName = roleName;
         this.roleId = RoleId;
     }
+
+    public int CompareTo(Role other)
+        {
+            return this.roleId.CompareTo(other.roleId);
+        }
 }
 }
 

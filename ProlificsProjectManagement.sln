@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPM.UI", "PPM.UI\PPM.UI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPM.TEST1", "PPM.TEST1\PPM.TEST1.csproj", "{B5464B96-2ABA-4E06-8DB4-3D5FD74C30AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEntityOperations", "IEntityOperations\IEntityOperations.csproj", "{256FF25C-CB58-4093-83D3-6A2DED241BF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{B5464B96-2ABA-4E06-8DB4-3D5FD74C30AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5464B96-2ABA-4E06-8DB4-3D5FD74C30AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5464B96-2ABA-4E06-8DB4-3D5FD74C30AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{256FF25C-CB58-4093-83D3-6A2DED241BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{256FF25C-CB58-4093-83D3-6A2DED241BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{256FF25C-CB58-4093-83D3-6A2DED241BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{256FF25C-CB58-4093-83D3-6A2DED241BF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

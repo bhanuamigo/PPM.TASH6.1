@@ -2,9 +2,10 @@
 using Program.Model.modl;
 namespace PROGRAM.DOMINE.domine
 {
-public class ProjectData
+public class ProjectData 
 {
     public List<Project> Prolifics = new List<Project>();
+    EmployeeManagement obj1 = new EmployeeManagement();
 
     //Method to add project
     public void Addproject(Project project)
@@ -49,22 +50,141 @@ public class ProjectData
             }
             }
     }
-    public void EmployeeToProject(int ProjectId,Employee employeeName){
-        for(int i=0; i<Prolifics.Count;i++){
-            if(Prolifics[i].id==ProjectId){
+   
+      public Boolean IfNoEmployeesInProject(int ProjectId)
+        {
+            for (int i=0; i<Prolifics.Count; i++)
+            {
+                if(Prolifics[i].id == ProjectId && Prolifics[i].AddingEmployeelist.Count==0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public List<Employee> SearchingForEmployee (int readingProjectId)
+        {
+            foreach(Project i in Prolifics)
+            {
+                i.AddingEmployeelist.Sort();
+                if(!IfNoEmployeesInProject(readingProjectId) && i.id == readingProjectId)
+                {
+                    return i.AddingEmployeelist;
+                }
+            }
+            return null;
+        }
+        public void Display()
+        {
+            for (int i=0; i<Prolifics.Count; i++)
+            {
+                Console.WriteLine("Project Name - " + Prolifics[i].projectName);
+                Console.WriteLine(" ****************************************** ");
+                Console.WriteLine("Below are the Details of Employees in this Project");
+                for(int j=0; j<Prolifics[i].AddingEmployeelist.Count; j++)
+                {
+                    Console.WriteLine(" ------------------------------------------- ");
+                    Console.WriteLine(Prolifics[i].AddingEmployeelist[j].firstName+ " [" +Prolifics[i].AddingEmployeelist[j].roleName + "]");
+                    Console.WriteLine(" ------------------------------------------- ");
+                }
+            }
+        }
+        
+    public void EmployeeToProject(int ProjectId,Employee employeeName)
+    {
+    if(obj1.exist(ProjectId))
+    {
+        for(int i=0; i<Prolifics.Count;i++)
+        {
+            if(Prolifics[i].id==ProjectId)
+            {
                 Prolifics[i].AddingEmployeelist.Add(employeeName);
             }
         }
     }
+    else
+    {
+        Console.WriteLine("With this ID the Employee already exists in this Project");
+        Console.WriteLine("Enter any key to get Main Menu");
+        Console.ReadLine();
+    }
+    }
+     public Project SearchingProject(List<Project> Prolifics, int first , int last, int ProjectId)
+        {
+            if(first <= last)
+            {
+                int midpoint = (first+last) / 2;
+                if (Prolifics[midpoint].id == ProjectId)
+                {
+                    return Prolifics[midpoint];
+                }
+                else if (Prolifics[midpoint].id > ProjectId)
+                {
+                    return SearchingProject(Prolifics, first, midpoint-1, ProjectId);
+                }
+                else if (Prolifics[midpoint].id < ProjectId);
+                {
+                    return SearchingProject(Prolifics, midpoint+1, last, ProjectId);
+                }
+            }
+            return null;
+        }
+     public void AddingEmployeeToProject(int ProjectId, Employee ename)
+        {
+            foreach(Project i in Prolifics)
+            {
+                if(i.id == ProjectId)
+                {
+                    i.AddingEmployeelist.Add(ename);
+                }
+            }
+        }
 
-     public void EmployeeFromProject(int ProjectId,Employee employeeName){
-        for(int i=0; i<Prolifics.Count;i++){
-            if(Prolifics[i].id==ProjectId){
+        public void DeleteProject(int ProjectId, Project project)
+        {
+            for (int i=0; i<Prolifics.Count; i++)
+            {
+                if(Prolifics[i].id == ProjectId)
+                {
+                    Prolifics.Remove(project);
+                }
+            }
+        }
+public void EmployeeFromProject(int ProjectId,Employee employeeName)
+{
+    for (int i=0; i<Prolifics.Count; i++)
+    {
+
+        for(int j=0; j<Prolifics[i].AddingEmployeelist.Count;j++)
+        {
+            if(Prolifics[i].id==ProjectId)
+            {
+                if(Prolifics[i].AddingEmployeelist.Count !=0)
+                {
                 Prolifics[i].AddingEmployeelist.Remove(employeeName);
+                }
+                else
+                {
+                    Console.WriteLine("No Employee Found in the Project to Delete");
+                } 
             }
         }
     }
-
+}
+public void DeleteEmployeeFromProject(int eid, Employee employeeName)
+        {
+            for(int i=0; i<Prolifics.Count; i++)
+            {
+                for(int j=0; j<Prolifics[i].AddingEmployeelist.Count; j++)
+                {
+                    if(Prolifics[i].AddingEmployeelist[j].employeeId == eid)
+                    {
+                        Prolifics[i].AddingEmployeelist.Remove(employeeName);
+                    }
+                }
+            }
+        }
 
     public Boolean exist(int ProjectId){
         for(int i=0; i<Prolifics.Count;i++)
@@ -76,27 +196,56 @@ public class ProjectData
         }
         return false;
     }
-
-   
-
-    //Method to view all projects
-    public void ShowProject(int eid)
-    {
-        foreach (Project p in Prolifics)
+/*public Boolean IfExistsInEmployee(int employeeid, int ProjectId)
         {
-
-            if (p.id == eid)
+            for (int i=0; i<Prolifics.Count; i++)
             {
-                Console.WriteLine(" Name of the project - " + p.projectName + "\n Project Id - " + p.id + "\n Start  date of project - " + p.startDate + "\n deadline  of the Project - " + p.endDate);
+                for (int j=0; j<Prolifics[i].AddingEmployeelist.Count; j++)
+                {
+                    if(employeeid == Prolifics[i].AddingEmployeelist[j].employeeId)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }*/
+
+        public Boolean IfExistsInEmployee(int employeeid, int ProjectId)
+        {
+            for (int i=0; i<Prolifics.Count; i++)
+            {
+                if(ProjectId == Prolifics[i].id)
+                {
+                    for (int j=0; j<Prolifics[i].AddingEmployeelist.Count; j++)
+                    {
+                        if(employeeid == Prolifics[i].AddingEmployeelist[j].employeeId)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+     public void ShowProject(int eid)
+        {
+            Prolifics.Sort();
+            int first = 0;
+            int last = Prolifics.Count -1;
+            Project project = SearchingProject(Prolifics, first, last, eid);
+            if(project != null)
+            {
+                viewProject(project);
             }
             else
             {
-                Console.WriteLine("Invalid ID re-enter valid ID");
+                Console.WriteLine("No Project Found with this ID");
             }
         }
-    }
 
-    public void SearchProject(string search)
+
+    public void SearchProjectByName(string search)
     {
         var match = Prolifics.Where(c => c.projectName.Contains(search));
         foreach (var e in match)
@@ -106,7 +255,7 @@ public class ProjectData
         }
     }
 
-    public void Display()
+   /* public void Display()
     {
         
             for (int j = 0; j < Prolifics.Count; j++)
@@ -122,40 +271,82 @@ public class ProjectData
                     Console.WriteLine(Prolifics[j].AddingEmployeelist[i].firstName);
                 }
             }}
-    }
+    }*/
 }
 public class EmployeeManagement
 {
-    public List<Employee> employeeList = new List<Employee>();
+    public List<Employee> ProlificsemployeeList = new List<Employee>();
 
     //Method to add new employee
-    public void AddEmp(Employee emp)
+    public void AddEmployee(Employee employee)
     {
-        employeeList.Add(emp);
+        ProlificsemployeeList.Add(employee);
     }
 
 
-    public void displayEmployee(Employee emp)
+    public void displayEmployee(Employee employee)
     {
-        Console.WriteLine(" Employee Id - " + emp.employeeId + "\n Employee first name - " + emp.firstName + "\n Employee last name - " + emp.lastName + "\n Employee email id - " + emp.email + "\n Employee mobile number - " + emp.mobile + "\n Employee address - " + emp.address + "\n Role Id - " + emp.roleId + "\n Role Name - " + emp.roleName);
+        Console.WriteLine(" Employee Id - " + employee.employeeId + "\n Employee first name - " + employee.firstName + "\n Employee last name - " + employee.lastName + "\n Employee email id - " + employee.email + "\n Employee mobile number - " + employee.mobile + "\n Employee address - " + employee.address + "\n Role Id - " + employee.roleId + "\n Role Name - " + employee.roleName);
         Console.WriteLine("");
+
     }
+    public Employee EmployeeDetails(int employeeid)
+        {
+            Employee employee = new Employee();
+            for(int i=0; i<ProlificsemployeeList.Count; i++)
+            {
+                if(employeeid == ProlificsemployeeList[i].employeeId)
+                {
+                    employee = ProlificsemployeeList[i];
+                    return employee;
+                }
+            }
+            return employee;
+        }
 
     //Method to view all employees
-    public void ShowEmployees()
+    public void ViewAllEmployees()
     {
-        foreach (var j in employeeList)
+        if(ProlificsemployeeList.Count == 0)
         {
+            Console.WriteLine("No Employees Available");
+        }
+        else
+        {
+            foreach (var j in ProlificsemployeeList)
+            {
             displayEmployee(j);
+            }
         }
     }
-
-    public void ShowEmployee(int eid)
-    {
-        foreach (Employee j in employeeList)
+ public Employee SerachingEmployeeInEmployeeList(List<Employee>list, int first, int last, int j)
         {
-
-            if (j.employeeId == eid)
+            if (first <= last)
+            {
+                int midpoint = (first+last) / 2;
+                if (list[midpoint].employeeId == j)
+                {
+                    return list[midpoint];
+                }
+                else if (list[midpoint].employeeId >j)
+                {
+                    return SerachingEmployeeInEmployeeList(list, first, midpoint-1, j);
+                }
+                else if (list[midpoint].employeeId < j)
+                {
+                    return SerachingEmployeeInEmployeeList(list, midpoint+1 ,last, j);
+                }
+            }
+            return null;
+        }
+    public void ShowEmployee(int employeeid)
+    {
+        ProlificsemployeeList.Sort();
+        int first = 0;
+        int last = ProlificsemployeeList.Count -1;
+        Employee j = SerachingEmployeeInEmployeeList(ProlificsemployeeList, first, last, employeeid);
+    
+            if (j ! = null)
             {
                 Console.WriteLine(" Name of the Employee - " + j.firstName + " " + j.lastName + "\n Employee Id - " + j.employeeId);
             }
@@ -163,30 +354,58 @@ public class EmployeeManagement
             {
                 Console.WriteLine("Invaild ID re-entre the vaild ID");
             }
-        }
+        
     }
 
-    public Boolean exist(int eid){
-        for(int i=0; i<employeeList.Count;i++){
-            if(eid== employeeList[i].employeeId){
+    public Boolean exist(int employeeid){
+        for(int i=0; i<ProlificsemployeeList.Count;i++)
+        {
+            if(employeeid== ProlificsemployeeList[i].employeeId)
+            {
                 return true;
             }
         }
         return false;
     }
+    public void DeleteEmployee(int employeeId, Employee employee)
+        {
+            for (int i=0; i<ProlificsemployeeList.Count; i++)
+            {
+                if (ProlificsemployeeList[i].employeeId == employeeId)
+                {
+                    ProlificsemployeeList.Remove(employee);
+                }
+            }
+        }
 
-    public Employee eDetails(int eid){
+        public Boolean IfExistsByRole(int roleId)
+        {
+            for (int i=0; i<ProlificsemployeeList.Count; i++)
+            {
+                if (ProlificsemployeeList[i].roleId == roleId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+/*public Employee eDetails(int eid)
+   {
         Employee emp = new Employee();
-        for(int i=0;i<employeeList.Count;i++){
-            if(eid==employeeList[i].employeeId){
-               emp=employeeList[i];
+        for(int i=0;i<ProlificsemployeeList.Count;i++)
+        {
+            if(eid==ProlificsemployeeList[i].employeeId)
+            {
+               emp=ProlificsemployeeList[i];
                 return emp;
             }
         }
         return emp;
-    }
+    }*/
 }
-}
+
 
 public class RoleManagement
 {
