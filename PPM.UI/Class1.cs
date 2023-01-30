@@ -17,7 +17,7 @@ namespace PROGRAM.UI.ui
         RoleManagement obj2 = new RoleManagement();
         Employee employee = new Employee();
         Project project = new Project();
-        Role role = new Role();
+       /* Role role = new Role();*/
         obj2.RoleList.Add(new Role(1,"Manager"));
         obj2.RoleList.Add(new Role(2,"Asst.Manger"));
         obj2.RoleList.Add(new Role(3,"Software Engineer" ));
@@ -67,11 +67,15 @@ namespace PROGRAM.UI.ui
                             Console.Write("\n \n  Select  Operation ");
                             Console.Write("                                           Enter \"1\" : Add Project");
                             Console.WriteLine("");
+                            Console.WriteLine("");
                             Console.Write("                                           Enter \"2\" : View  all Projects");
+                            Console.WriteLine("");
                             Console.WriteLine("");
                             Console.Write("                                           Enter \"3\" : View  Project by ID");
                             Console.WriteLine("");
+                            Console.WriteLine("");
                             Console.Write("                                            Enter \"4\" : View Project by Name");
+                            Console.WriteLine("");
                             Console.WriteLine("");
                             Console.WriteLine("                                       Enter \"5\" : Add Employee to Project");
                             Console.WriteLine("");
@@ -583,14 +587,15 @@ namespace PROGRAM.UI.ui
                         Console.WriteLine("Try Again");
                         goto Option;
                         }
-                        }
-                        catch(FormatException e)
-                        {
+                    }
+                    catch(FormatException e)
+                    {
                         Console.WriteLine("ID can only be in Numbers");
                         Console.WriteLine("Enter any key to Try Again");
                         Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+
                         string EmpIdTry = Console.ReadLine();
-                        if(EmpIdTry == "x")
+                        if(EmpIdTry == "y")
                             {
                                 goto breaking;
                             }
@@ -598,7 +603,7 @@ namespace PROGRAM.UI.ui
                             {
                                 goto tryagain;
                             }
-                        }
+                    }
 
                         catch(Exception e)
                         {
@@ -621,7 +626,7 @@ namespace PROGRAM.UI.ui
                         Console.WriteLine("");
                         Console.WriteLine("Enter any key to get back to Main Menu");
                         Console.ReadLine();
-                        breaking;
+                        breaking:
                         break;
 
                 case "2":
@@ -720,10 +725,10 @@ namespace PROGRAM.UI.ui
                         {
                             InputroleID:
                             Console.WriteLine(" \n \n Enter  Role Id \t ");
-                            int roleID = Convert.ToInt32(Console.ReadLine());
+                            int RoleId = Convert.ToInt32(Console.ReadLine());
                             for(int i = 0; i<obj2.RoleList.Count; i++)
                             {
-                            if(roleIDD == obj2.RoleList[i].roleId)
+                            if(RoleId == obj2.RoleList[i].roleId)
                             {
                             Console.WriteLine("The ID already exists try new ID");
                             Console.WriteLine("Enter any key to Try Again");
@@ -743,7 +748,7 @@ namespace PROGRAM.UI.ui
                         Console.WriteLine("Enter name of the  Role");
                         string roleName = Console.ReadLine();
                         Console.WriteLine(roleName);
-                        Role newRole = new Role(roleID, roleName);
+                        Role newRole = new Role(RoleId, roleName);
                         obj2.RoleAdd(newRole);
                         Console.WriteLine("\n \n ...Added Successfully...\t");
                     }
@@ -751,21 +756,97 @@ namespace PROGRAM.UI.ui
                     {
                         Console.WriteLine("Role Id should only be in number formate ");
                     }
-                    Console.WriteLine("\n \n Enter any key to get  back to main menu \t ");
-                    Console.ReadLine();
                     break;
 
-                case "x":
+                case "2":
                     obj2.DisplayRole();
                     Console.WriteLine("Enter any key to get back  to main menu");
                     Console.ReadLine();
                     break;
+                
+                case "3":
+                try
+                {
+                    Console.WriteLine("Enter Role ID ");
+                        int searchRoleById = Convert.ToInt32(Console.ReadLine());
+                        if (obj2.exist(searchRoleById))
+                            {
+                                obj2.ListRoleById(searchRoleById);
+                            }
+                                        
+                        else
+                            {
+                                Console.WriteLine(" Role ID Does Not Exist");
+                            }
+                                        
+                                Console.WriteLine("Enter any key to get Main Menu");
+                                Console.ReadLine();
+                }
+                catch (FormatException )
+                {
+                    Console.WriteLine("ID should be in Numbers only");
+                }
+                catch (Exception )
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+                break; 
+                case "4":
+                try
+                {
+                    Console.WriteLine("Enter the ID of the Role");
+                    int deleteRoleById = Convert.ToInt32(Console.ReadLine());
+                    if (obj2.exist(deleteRoleById))
+                    {
+                        if (obj1.IfExistsByRole(deleteRoleById))
+                            {
+                                Console.WriteLine("Looks like Employee consists this Role ID, Delete Employee with this Role Id First");
+                            }
+                        else
+                            {
+                                obj2.DeleteRole(deleteRoleById);
+                                Console.WriteLine("Deleted Successfully");
+                            }
+                    }
+                                            
+                    else
+                    {
+                    Console.WriteLine("ID Does Not Exists");
+                    }
+                    Console.WriteLine("Enter any key to get Main Menu");
+                    Console.ReadLine();
+                }
+                                    
+                catch ( FormatException e)
+                {
+                    Console.WriteLine("ID should be in Numbers only");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Invalid Input");
+                }
+                break;
+                                
+                case "x":
+                goto View;
+                break;
+
+            default:
+            Console.WriteLine("Invalid Entry");
+            break;
         }
+                            
+    }
+
+        case "S":
+        return;  
+    }
+
               
         
    
         
-           Console.Write("\n LIST OF OPERATIONS ");
+            Console.Write("\n LIST OF OPERATIONS ");
             Console.WriteLine("");
             Console.WriteLine("                                      *** | PROLIFICS PROJECT MANAGEMENT    | ***                                    ");
             Console.WriteLine("");

@@ -319,22 +319,22 @@ public class EmployeeManagement
             }
         }
     }
- public Employee SerachingEmployeeInEmployeeList(List<Employee>list, int first, int last, int j)
+ public Employee SerachingEmployeeInEmployeeList(List<Employee>list, int first, int last, int y)
         {
             if (first <= last)
             {
                 int midpoint = (first+last) / 2;
-                if (list[midpoint].employeeId == j)
+                if (list[midpoint].employeeId == y)
                 {
                     return list[midpoint];
                 }
-                else if (list[midpoint].employeeId >j)
+                else if (list[midpoint].employeeId >y)
                 {
-                    return SerachingEmployeeInEmployeeList(list, first, midpoint-1, j);
+                    return SerachingEmployeeInEmployeeList(list, first, midpoint-1, y);
                 }
-                else if (list[midpoint].employeeId < j)
+                else if (list[midpoint].employeeId < y)
                 {
-                    return SerachingEmployeeInEmployeeList(list, midpoint+1 ,last, j);
+                    return SerachingEmployeeInEmployeeList(list, midpoint+1 ,last, y);
                 }
             }
             return null;
@@ -344,11 +344,11 @@ public class EmployeeManagement
         ProlificsemployeeList.Sort();
         int first = 0;
         int last = ProlificsemployeeList.Count -1;
-        Employee j = SerachingEmployeeInEmployeeList(ProlificsemployeeList, first, last, employeeid);
+        Employee y = SerachingEmployeeInEmployeeList(ProlificsemployeeList, first, last, employeeid);
     
-            if (j ! = null)
+            if (y != null)
             {
-                Console.WriteLine(" Name of the Employee - " + j.firstName + " " + j.lastName + "\n Employee Id - " + j.employeeId);
+                Console.WriteLine(" Name of the Employee - " + y.firstName + " " + y.lastName + "\n Employee Id - " + y.employeeId);
             }
             else
             {
@@ -430,6 +430,53 @@ public class RoleManagement
             Console.WriteLine();
         }
     }
+      public Role SearchingRole (List<Role> RoleList, int first, int last, int roleId)
+        {
+            if (first <= last)
+            {
+                int midpoint = (first+last) / 2;
+                if (RoleList[midpoint].roleId == roleId)
+                {
+                    return RoleList[midpoint];
+                }
+                else if (RoleList[midpoint].roleId < roleId)
+                {
+                    return SearchingRole(RoleList, midpoint+1, last, roleId);
+                }
+                else if (RoleList[midpoint].roleId > roleId)
+                {
+                    return SearchingRole(RoleList, first, midpoint-1, roleId);
+                }
+            }
+            return null;
+        }
+
+        public void ListRoleById(int roleId)
+        {
+            RoleList.Sort();
+            int first = 0;
+            int last = RoleList.Count -1;
+            Role roleSelect = SearchingRole(RoleList, first, last, roleId);
+            if (roleSelect != null)
+            {
+                Console.WriteLine(" Name of the Role - " + roleSelect.roleName + "\n Role ID - " + roleSelect.roleId);
+            }
+            else
+            {
+                Console.WriteLine("Role with this roleSelect Id does not Exist");
+            }
+        }
+
+        public void DeleteRole (int roleId)
+        {
+            for (int i=0; i<RoleList.Count; i++)
+            {
+                if (RoleList[i].roleId == roleId)
+                {
+                    RoleList.RemoveAt(i);
+                }
+            }
+        }
      public Boolean exist(int roleId)
         {
             for (int i = 0; i < RoleList.Count; i++)
