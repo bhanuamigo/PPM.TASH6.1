@@ -1,11 +1,10 @@
 ﻿
 using Program.Model.modl;
 using PROGRAM.DOMINE.domine;
+using System.Xml.Serialization;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-namespace PROGRAM.UI.ui
-{
-
+namespace PROGRAM.UI.ui;
 
  public class UI
 {
@@ -44,6 +43,9 @@ namespace PROGRAM.UI.ui
             Console.Write("                                           Enter \"2\" : Employee Module");
             Console.WriteLine("");
             Console.Write("                                           Enter \"3\" : Role Module");
+            Console.WriteLine(""); 
+            Console.Write("                                           Enter \"4\" : save ");
+            Console.WriteLine("");
             Console.WriteLine("");
             Console.WriteLine("                                       Enter \"x\" : exit application");
             Console.WriteLine("");
@@ -65,27 +67,30 @@ namespace PROGRAM.UI.ui
                             Console.WriteLine("                                     ****| Welcome to Project Module   |***                                    ");
                             Console.WriteLine("");
                             Console.Write("\n \n  Select  Operation ");
-                            Console.Write("                                           Enter \"1\" : Add Project");
+                            Console.WriteLine("");
+                            Console.Write("                               Enter \"1\" : Add Project");
                             Console.WriteLine("");
                             Console.WriteLine("");
-                            Console.Write("                                           Enter \"2\" : View  all Projects");
+                            Console.Write("                               Enter \"2\" : View  all Projects");
                             Console.WriteLine("");
                             Console.WriteLine("");
-                            Console.Write("                                           Enter \"3\" : View  Project by ID");
+                            Console.Write("                               Enter \"3\" : View  Project by ID");
                             Console.WriteLine("");
                             Console.WriteLine("");
-                            Console.Write("                                            Enter \"4\" : View Project by Name");
+                            Console.Write("                               Enter \"4\" : View Project by Name");
                             Console.WriteLine("");
                             Console.WriteLine("");
-                            Console.WriteLine("                                       Enter \"5\" : Add Employee to Project");
+                            Console.WriteLine("                           Enter \"5\" : Add Employee to Project");
                             Console.WriteLine("");
-                            Console.WriteLine("                                       Enter \"6\"  : Remove Employee from Project");
+                            Console.WriteLine("                           Enter \"6\"  : Remove Employee from Project");
                             Console.WriteLine("");
-                            Console.WriteLine("                                       Enter \"7\"  : View Projects with Employees");
+                            Console.WriteLine("                           Enter \"7\"  : View Projects with Employees");
                             Console.WriteLine("");
-                            Console.WriteLine("                                      Enter \"8\"  : Delete  Project");
+                            Console.WriteLine("                           Enter \"8\"  : Delete  Project");
                             Console.WriteLine("");
-                            Console.WriteLine("                                       Enter \"x\"  : Main Menu");
+                            Console.WriteLine("                           Enter \"9\"  : View all Projects with Employees");
+                            Console.WriteLine("");
+                            Console.WriteLine("                           Enter \"x\"  : Main Menu");
                             Console.WriteLine("");
                             Console.Write("\n \n Please  Enter Selected Operation ");
                             Console.WriteLine("");
@@ -393,8 +398,9 @@ namespace PROGRAM.UI.ui
                     Console.WriteLine("Enter any key to get to main menu");
                     Console.ReadLine();
                     break;
-                      case "x":
-                    return;
+                case "x":
+                    goto View;
+                    break;
                 default:
                     Console.WriteLine("Invalid entry");
                     break;
@@ -837,9 +843,28 @@ namespace PROGRAM.UI.ui
         }
                             
     }
+                
+    case "4":
+    var serialiazerProject = new XmlSerializer(typeof(List<Project>));
 
-        case "S":
-        return;  
+    var serialiazerEmployee = new XmlSerializer(typeof(List<Employee>));
+
+    var serializerRole = new XmlSerializer(typeof(List<Role>));
+
+    using (var writer = new StreamWriter (@"C:\Users\SMandlole\XmlSerialization file\Text.txt"))
+
+    {
+        serialiazerProject.Serialize(writer, obj.Prolifics);
+
+        serialiazerEmployee.Serialize(writer, obj1.ProlificsemployeeList);
+
+        serializerRole.Serialize(writer, obj2.RoleList);
+    }
+
+    break;
+
+    case "5":
+    return;  
     }
 
               
@@ -854,13 +879,16 @@ namespace PROGRAM.UI.ui
             Console.WriteLine("");
             Console.Write("\n \n  Select  Operation ");
             Console.WriteLine("");
-            Console.Write("                                           Enter 1 : Project Module");
+            Console.Write("                                           Enter \"1\" : Project Module");
             Console.WriteLine("");
-            Console.Write("                                           Enter 2 : Employee Module");
+            Console.Write("                                           Enter \"2\" : Employee Module");
             Console.WriteLine("");
-            Console.Write("                                           Enter 3 : Role Module");
+            Console.Write("                                           Enter \"3\" : Role Module");
             Console.WriteLine("");
-            Console.WriteLine("                                       Enter x : exit application");
+            Console.Write("                                           Enter \"4\" : save");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("                                       Enter \"x\" : exit application");
             Console.WriteLine("");
             Console.Write("\n \n Please  Enter Selected Operation ");
             Console.WriteLine("");
@@ -869,6 +897,6 @@ namespace PROGRAM.UI.ui
         }
     }
    }
-}
+
 
 
