@@ -67,7 +67,7 @@ public class Employee: IComparable<Employee>
 
     public Employee()
     {
-
+        
     }
     public int CompareTo(Employee other)
     {
@@ -78,12 +78,12 @@ public class Employee: IComparable<Employee>
 }
 public class Role: IComparable<Role>
 {
-    public string roleName { get; set; }
+    public string? roleName { get; set; }
     public int roleId { get; set; }
 
     public Role(int RoleId, string RoleName)
     {
-       this.roleName = roleName;
+       this.roleName = RoleName;
         this.roleId = RoleId;
     }
 

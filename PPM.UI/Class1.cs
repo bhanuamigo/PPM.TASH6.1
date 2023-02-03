@@ -181,7 +181,7 @@ namespace PROGRAM.UI.ui;
                         Console.WriteLine("Would You Like To Add Employees to this Project?");
                         Console.WriteLine("Enter \"Yes\" to Add or Enter Anything to Deny");
                                                 
-                                                    var addEmployeeOrNot = Console.ReadLine();
+                        var addEmployeeOrNot = Console.ReadLine();
 
                                                     if (addEmployeeOrNot == "Yes")
                                                     {
@@ -732,30 +732,29 @@ namespace PROGRAM.UI.ui;
                             InputroleID:
                             Console.WriteLine(" \n \n Enter  Role Id \t ");
                             int RoleId = Convert.ToInt32(Console.ReadLine());
-                            for(int i = 0; i<obj2.RoleList.Count; i++)
-                            {
-                            if(RoleId == obj2.RoleList[i].roleId)
-                            {
-                            Console.WriteLine("The ID already exists try new ID");
-                            Console.WriteLine("Enter any key to Try Again");
-                            Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
-                            string roleidTry = Console.ReadLine();
-                                                        if (roleidTry == "x") 
-                                                        {
-                                                            break;
-                                                        }
-                                                        else
-                                                        {
-                                                            goto InputroleID;
-                                                        }
-                                                    }
-                                                }
+                            // for(int i = 0; i<obj2.RoleList.Count; i++)
+                            // {
+                            // if(RoleId == obj2.RoleList[i].roleId)
+                            // {
+                            // Console.WriteLine("The ID already exists try new ID");
+                            // Console.WriteLine("Enter any key to Try Again");
+                            // Console.WriteLine("Enter  \"x\" to Exit to Main Menu");
+                            // string roleidTry = Console.ReadLine();
+                            //                             if (roleidTry == "x") 
+                            //                             {
+                            //                                 break;
+                            //                             }
+                            //                             else
+                            //                             {
+                            //                                 goto InputroleID;
+                            //                             }
+                            //                         }
+                            //                     }
 
                         Console.WriteLine("Enter name of the  Role");
-                        string roleName = Console.ReadLine();
-                        Console.WriteLine(roleName);
-                        Role newRole = new Role(RoleId, roleName);
-                        obj2.RoleAdd(newRole);
+                        string? roleNAme = Console.ReadLine();
+                        Role newRole = new Role(RoleId, roleNAme);
+                        obj2.RoleAdding(newRole);
                         Console.WriteLine("\n \n ...Added Successfully...\t");
                     }
                     catch (Exception)

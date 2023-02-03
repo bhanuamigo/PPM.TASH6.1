@@ -13,3 +13,5 @@ c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Ma
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net7.0\refint\PPM.DOMAIN.dll
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net7.0\PPM.DOMAIN.pdb
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\obj\Debug\net7.0\ref\PPM.DOMAIN.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net7.0\PPM.DAL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DOMAIN\bin\Debug\net7.0\PPM.DAL.pdb

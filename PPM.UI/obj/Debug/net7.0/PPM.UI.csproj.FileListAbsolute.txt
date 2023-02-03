@@ -15,3 +15,5 @@ c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Ma
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\refint\PPM.UI.dll
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\PPM.UI.pdb
 c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\obj\Debug\net7.0\ref\PPM.UI.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.DAL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.UI\bin\Debug\net7.0\PPM.DAL.pdb

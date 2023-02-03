@@ -1,0 +1,12 @@
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\bin\Debug\net7.0\PPM.DAL.deps.json
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\bin\Debug\net7.0\PPM.DAL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\bin\Debug\net7.0\PPM.DAL.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.csproj.AssemblyReference.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.AssemblyInfoInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.AssemblyInfo.cs
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.csproj.CoreCompileInputs.cache
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\refint\PPM.DAL.dll
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\PPM.DAL.pdb
+c:\Users\BJULURI\Downloads\Prolifics Project Management (1)\Prolifics Project Management\PPM.DAL\obj\Debug\net7.0\ref\PPM.DAL.dll

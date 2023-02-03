@@ -1,9 +1,10 @@
-﻿
+﻿using AdoNetConsoleApplication;
 using Program.Model.modl;
 namespace PROGRAM.DOMINE.domine
 {
 public class ProjectData 
 {
+
     public List<Project> Prolifics = new List<Project>();
     EmployeeManagement obj1 = new EmployeeManagement();
 
@@ -277,7 +278,13 @@ public class EmployeeManagement
 {
     public List<Employee> ProlificsemployeeList = new List<Employee>();
 
-    //Method to add new employee
+    public void AddEmployeeToTable(Employee employee)
+    {
+        EmployeeDal employeeDal = new EmployeeDal();
+        employeeDal.InsertIntoEmployeeTable(employee.employeeId,employee.firstName,employee.lastName,employee.email,employee.mobile,employee.address,employee.roleId);
+    }
+
+    //Method to add new employeep
     public void AddEmployee(Employee employee)
     {
         ProlificsemployeeList.Add(employee);
@@ -413,7 +420,11 @@ public class RoleManagement
 
     public List<Role> RoleList = new List<Role>();
 
-
+    public void RoleAdding(Role role)
+    {
+        RoleDal roleDal = new RoleDal();
+        roleDal.InsertIntoRoleTable(role.roleId,role.roleName);
+    }
 
     //Method  to add roles
     public void RoleAdd(Role role)
@@ -465,6 +476,11 @@ public class RoleManagement
             {
                 Console.WriteLine("Role with this roleSelect Id does not Exist");
             }
+        }
+        public void DeletingRole(Role role)
+        {
+        RoleDal roleDal = new RoleDal();
+        roleDal.DeleteRoleData(role.roleId);
         }
 
         public void DeleteRole (int roleId)
